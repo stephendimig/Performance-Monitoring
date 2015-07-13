@@ -1,0 +1,265 @@
+Performance Monitoring Using Ganglia
+========================================================
+author: Stephen Dimig
+date: `r date()`
+transition: rotate
+
+```{r, echo=FALSE, warning=FALSE}
+library(ggplot2)
+suppressPackageStartupMessages(library(googleVis))
+op <- options(gvis.plot.tag="chart")
+
+df <- read.table("psbr_data_147.txt", sep=";", header=TRUE, stringsAsFactors=FALSE)
+
+df$Date <- as.POSIXlt(df$Date, format="%Y-%m-%d %H:%M:%S")
+
+df$NumPsbrBindingRecs <- as.numeric(df$NumPsbrBindingRecs)
+df$NumPsbrSessionRecs  <- as.numeric(df$NumPsbrSessionRecs)
+df$AllocInMemorySize <- as.numeric(df$AllocInMemorySize)
+df$UsedInMemorySize <- as.numeric(df$UsedInMemorySize)
+df$BINDINGTASKQ0 <- as.numeric(df$BINDINGTASKQ0)
+df$BINDINGTASKQ1 <- as.numeric(df$BINDINGTASKQ1)
+df$BINDINGTASKQ2 <- as.numeric(df$BINDINGTASKQ2)
+df$BINDINGTASKQ3 <- as.numeric(df$BINDINGTASKQ3)
+df$SESSIONTASKQ0 <- as.numeric(df$SESSIONTASKQ0)
+df$SESSIONTASKQ0 <- as.numeric(df$SESSIONTASKQ1)
+df$SESSIONTASKQ0 <- as.numeric(df$SESSIONTASKQ2)
+df$SESSIONTASKQ0 <- as.numeric(df$SESSIONTASKQ3)
+df$ImsiAnchorKeyRecs <- as.numeric(df$ImsiAnchorKeyRecs)
+df$ImsiApnAnchorKeyRecs <- as.numeric(df$ImsiApnAnchorKeyRecs)
+df$MsisdnAlternateKeyRecs <- as.numeric(df$ImsiApnAnchorKeyRecs)
+df$MsisdnApnAlternateKeyRecs <- as.numeric(df$MsisdnApnAlternateKeyRecs)
+df$Ipv4AlternateKeyRecs <- as.numeric(df$Ipv4AlternateKeyRecs)
+df$Ipv4AlternateKeyV2Recs <- as.numeric(df$Ipv4AlternateKeyV2Recs)
+df$Ipv6AlternateKeyRecs <- as.numeric(df$Ipv6AlternateKeyRecs)
+df$Ipv6AlternateKeyV2Recs <- as.numeric(df$Ipv6AlternateKeyV2Recs)
+df$SessionRecs <- as.numeric(df$SessionRecs)
+df$OcSessionRecs <- as.numeric(df$OcSessionRecs)
+df$OcClientHostRecs <- as.numeric(df$OcClientHostRecs)
+df$IngressStackEventRate <- as.numeric(df$IngressStackEventRate)
+df$EgressStackEventRate <- as.numeric(df$EgressStackEventRate)
+df$BindingTaskCpu0 <- as.numeric(df$BindingTaskCpu0)
+df$BindingTaskCpu1 <- as.numeric(df$BindingTaskCpu1)
+df$BindingTaskCpu2 <- as.numeric(df$BindingTaskCpu2)
+df$BindingTaskCpu3 <- as.numeric(df$BindingTaskCpu3)
+df$RecordAuditTaskCpu <- as.numeric(df$RecordAuditTaskCpu)
+df$AuditStackEventTaskCpu <- as.numeric(df$AuditStackEventTaskCpu)
+df$CATxUserBundlingRatio <- as.numeric(df$CATxUserBundlingRatio)
+df$CATxProvBundlingRatio <- as.numeric(df$CATxProvBundlingRatio)
+df$CARxBundlingRatio <- as.numeric(df$CARxBundlingRatio)
+df$SessionTaskCpu0 <- as.numeric(df$SessionTaskCpu0)
+df$SessionTaskCpu1 <- as.numeric(df$SessionTaskCpu1)
+df$SessionTaskCpu2 <- as.numeric(df$SessionTaskCpu2)
+df$SessionTaskCpu3 <- as.numeric(df$SessionTaskCpu3)
+df$CATcpThread <- as.numeric(df$CATcpThread)
+df$CARIngressTask <- as.numeric(df$CARIngressTask)
+df$CADirectXferThr <- as.numeric(df$CADirectXferThr)
+df$CAREgressTask <- as.numeric(df$CAREgressTask)
+df$ComAgentTimer <- as.numeric(df$ComAgentTimer)
+df$ComAgtReTx <- as.numeric(df$ComAgtReTx)
+df$AlarmMajor <- as.numeric(df$AlarmMajor)
+df$AlarmMinor <- as.numeric(df$AlarmMinor)
+df$AlarmCrit <- as.numeric(df$AlarmCrit)
+df$SbrSisTaskCpu0 <- as.numeric(df$SbrSisTaskCpu0)
+df$SbrSisTaskCpu1 <- as.numeric(df$SbrSisTaskCpu1)
+df$SbrSisSendRarTaskCpu <- as.numeric(df$SbrSisSendRarTaskCpu)
+df$SbrSisRspHandleTaskCpu <- as.numeric(df$SbrSisRspHandleTaskCpu)
+df$SbrInvokeSisSenTaskCpu <- as.numeric(df$SbrInvokeSisSenTaskCpu)
+df$SbrInvokeSisRspTaskCpu <- as.numeric(df$SbrInvokeSisRspTaskCpu)
+
+
+options(scipen=999)
+options(digits=2)
+```
+
+Ganglia 
+========================================================
+Ganglia is a scalable distributed system monitor tool for high-performance computing systems such as clusters and grids.
+
+- *Ganglia Monitoring Daemon (gmond)* Runs on the node being monitored. Gathers metric data through a extensible python script.
+- *Ganglia Meta Daemon (gmetad)* Runs on the Ganglia server. Collects forwarded data and stores it in the RRD.
+- *Ganglia PHP Web Front-end* Runs on the Ganglia server. Provides a view of the gathered information via real-time dynamic web pages.
+- *RRD* Realtime database for storage of Ganglia metrics.
+- *Ganglia* is distributed under BSD license
+
+R-Studio
+========================================================
+RStudio is a free and open source integrated development environment (IDE) for R, a programming language for statistical computing and graphics.
+- *R* is a programming language for statistical computing and graphics. 
+- *Knitr*  is an engine for dynamic report generation with R. It is a package in R that enables integration of R code into reports (ie; you can include code and data in the same report template).
+- *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
+- *RStudio* is distributed under the GNU General Public License
+
+VE-DSR Performance Monitoring 
+========================================================
+
+![alt text](system-diagram.gif)
+
+PSBR
+========================================================
+The Ganglia Monitoring Daemon (gmond) runs on the PSBR. It periodically gathers metric data and forwards it to the Ganglia Web server through the NO which acts as a relay.
+
+- *gmond.conf* is a configuration file in /etc/ganglia/gmod.conf. It contains information that gmond requires to run.
+- *psbr.py* is a python script that is used to gather all of the psbr related metrics. The gmond daemon will periodically invoke this script. It contians definitions for all of the metrics including a function to invoke and it's type.
+- *psbr.pyconf* this file contains the name of each metric defined in psbr.py above plus a title that will be displayed by the web interface.
+
+
+NO
+========================================================
+The Ganglia Monitoring Daemon (gmond) runs on the PSBR but it acts only as a relay forwarding data from the PSBRs to the Ganglia server. All of our lab metrics currently go through the same NO.
+
+- *gmond.conf* is a configuration file in /etc/ganglia/gmod.conf. It contains information that gmond requires to run.
+
+
+Ganglia Web Server
+========================================================
+The Ganglia Web Server runs the Ganglia Meta Daemon (gmetad) and Ganglia PHP Web Front-end. We run this on an old G6 card in the lab. It has more extensive RPMs installed on it than a client.
+
+- *rrd2csv.py* Ganglia stores metric data from the monitored nodes in an RRD database. RRD has a binary format and is laid out with one metric per file. The rrd2csv.py allows you to generate a csv file from the RRD data so you can do more detailed analysis on it.
+
+
+Ganglia PSBR CPU Example
+========================================================
+
+![alt text](ganglia_cpu.png)
+
+
+Ganglia PSBR Session Recs Example
+========================================================
+
+![alt text](ganglia_session_recs.png)
+
+
+User PC
+========================================================
+You can do analysis on the CSV file for a performance run on your loacal PC using Excel or R-Studio. I prefer the second option because it easier. You can generate a report for a new run by just changing out the csv file and hitting a single button.
+
+- *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report.
+- *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
+
+
+Example Table
+========================================================
+
+| __Resource__  | __Value__  |
+| ------------------------- | -------- |
+| Start                    :| `r format(df$Date[1], "%m/%d/%Y %H:%M:%S")` |
+| End                      :| `r format(df$Date[dim(df)[[1]]], "%m/%d/%Y %H:%M:%S")` |
+| Duration                 :| `r difftime(df$Date[dim(df)[[1]]], df$Date[1], units="hours")` Hours |
+| RAM Start                :| `r df$Ram[1]` % |
+| RAM End                  :| `r df$Ram[dim(df)[[1]]]` % |
+| RAM Minimum              :| `r min(df$Ram, na.rm=TRUE)` % |
+| RAM Maximum              :| `r max(df$Ram, na.rm=TRUE)` % |
+| RAM Average              :| `r mean(df$Ram, na.rm=TRUE)` % |
+| CPU Usage                :| `r mean(df$Cpu, na.rm=TRUE)` % |
+| Number Bindings - Start  :| `r df$NumPsbrBindingRecs[1]`|
+| Number Bindings - End    :| `r df$NumPsbrBindingRecs[dim(df)[[1]]]`|
+| Number Bindings - Mean   :| `r mean(df$NumPsbrBindingRecs, na.rm=TRUE)`|
+| Ingress Stack Event Rate :| `r mean(df$IngressStackEventRate, na.rm=TRUE)` |
+| Egress Stack Event Rate  :| `r mean(df$EgressStackEventRate, na.rm=TRUE)` |
+
+Example CPU Analysis
+========================================================
+
+```{r, echo=FALSE,fig.height=9, fig.width=9}
+ggplot(df, aes(Date, x=Date, y=Cpu)) + 
+    scale_colour_manual("CPU", breaks=c("Cpu", "Minor", "Major", "Critical", "Trend"), values=c('blue', 'orange', 'green', 'red', 'brown')) +
+    geom_line(aes(y = Cpu, colour="Cpu")) +
+    geom_hline(aes(yintercept=60, colour="Minor")) +
+    geom_hline(aes(yintercept=66, colour="Major")) +
+    geom_hline(aes(yintercept=72, colour="Critical")) +
+    geom_smooth(aes(colour="Trend"), method="lm", formula=y~x, se=FALSE) +
+    ylab("CPU Usage") +
+    xlab("Date/Time") +
+    ggtitle("PSBR CPU Usage")
+    
+```
+
+
+Example Database Composition
+========================================================
+
+```{r, echo=FALSE,fig.height=9, fig.width=9}
+types <- c("ImsiAnchor", "ImsiApnAnchor", "MsisdnAlt", "MsisdnApnAlt", "Ipv4Alt", "Ipv4AltV2", "Ipv6Alt", "Ipv6AltV2", "Session", "OcSession", "OcClientHost")
+values <- c(mean(df$ImsiAnchorKeyRecs), mean(df$ImsiApnAnchorKeyRecs), mean(df$MsisdnAlternateKeyRecs), mean(df$MsisdnApnAlternateKeyRecs), mean(df$Ipv4AlternateKeyRecs), mean(df$Ipv4AlternateKeyV2Recs), mean(df$Ipv6AlternateKeyRecs), mean(df$Ipv6AlternateKeyV2Recs), mean(df$SessionRecs), mean(df$OcSessionRecs), mean(df$OcClientHostRecs))
+mydf <- data.frame(types, values)
+names(mydf) <- c("Type", "Value")
+
+mydf <- mydf[mydf$Value !=0, ]
+
+ggplot(mydf, aes(x=factor(Type), y=Value, fill=Type)) + geom_bar(stat = "identity") +
+    ylab("Number of Records") +
+    xlab("Table") +
+    ggtitle("PSBR Database Composition")
+```
+
+
+Example ComAgent Stack Event Rates
+========================================================
+
+
+```{r, echo=FALSE,fig.height=9, fig.width=9}
+ggplot(df, aes(Date)) + 
+    scale_colour_manual("Rate", breaks=c("Ingress", "Egress",  "IngressMean", "EgressMean"), values=c("red", "blue", "orange", "purple")) +
+    geom_line(aes(y = IngressStackEventRate, colour="Ingress")) + 
+    geom_line(aes(y = EgressStackEventRate, colour="Egress")) +
+    geom_hline(aes(yintercept=mean(df$IngressStackEventRate, na.rm=TRUE), colour="IngressMean")) +
+    geom_hline(aes(yintercept=mean(df$EgressStackEventRate, na.rm=TRUE), colour="EgressMean")) +
+    ylab("Rate") +
+    xlab("Date/Time") +
+    ggtitle("PSBR ComAgent Stack Event Rates")
+    
+```
+
+Example googleVis chart
+========================================================
+
+```{r results='asis', echo=FALSE}
+
+M <- gvisLineChart(df, xvar="Date", yvar="Cpu", options=list(height=500, width=800))
+
+print(M, 'chart')
+```
+
+
+Example googleVis bar chart
+========================================================
+```{r results='asis', echo=FALSE}
+types <- c("ImsiAnchor", "ImsiApnAnchor", "MsisdnAlt", "MsisdnApnAlt", "Ipv4Alt", "Ipv4AltV2", "Ipv6Alt", "Ipv6AltV2", "Session", "OcSession", "OcClientHost")
+values <- c(mean(df$ImsiAnchorKeyRecs), mean(df$ImsiApnAnchorKeyRecs), mean(df$MsisdnAlternateKeyRecs), mean(df$MsisdnApnAlternateKeyRecs), mean(df$Ipv4AlternateKeyRecs), mean(df$Ipv4AlternateKeyV2Recs), mean(df$Ipv6AlternateKeyRecs), mean(df$Ipv6AlternateKeyV2Recs), mean(df$SessionRecs), mean(df$OcSessionRecs), mean(df$OcClientHostRecs))
+mydf <- data.frame(types, values)
+names(mydf) <- c("Type", "Value")
+
+mydf <- mydf[mydf$Value !=0, ]
+
+M <- gvisBarChart(mydf, xvar="Type", yvar="Value", options=list(height=500, width=800)) 
+
+print(M, 'chart')
+```
+
+Example googleVis pie chart
+========================================================
+```{r results='asis', echo=FALSE}
+types <- c("ImsiAnchor", "ImsiApnAnchor", "MsisdnAlt", "MsisdnApnAlt", "Ipv4Alt", "Ipv4AltV2", "Ipv6Alt", "Ipv6AltV2", "Session", "OcSession", "OcClientHost")
+values <- c(mean(df$ImsiAnchorKeyRecs), mean(df$ImsiApnAnchorKeyRecs), mean(df$MsisdnAlternateKeyRecs), mean(df$MsisdnApnAlternateKeyRecs), mean(df$Ipv4AlternateKeyRecs), mean(df$Ipv4AlternateKeyV2Recs), mean(df$Ipv6AlternateKeyRecs), mean(df$Ipv6AlternateKeyV2Recs), mean(df$SessionRecs), mean(df$OcSessionRecs), mean(df$OcClientHostRecs))
+mydf <- data.frame(types, values)
+names(mydf) <- c("Type", "Value")
+
+mydf <- mydf[mydf$Value !=0, ]
+
+M <- gvisPieChart(mydf, options=list(height=500, width=800)) 
+
+print(M, 'chart')
+```
+
+Client Installation
+========================================================
+
+- You can find a gzip file with a client insallation at ~dimig/Public/ganglia.
+- Scp the gzip file to the target machine
+- Uncompress the archive: gunzip ganglia.rpms.tar.gz
+- Untar the archive file: tar xvf ganglia.rpms.tar
+- This will create an rpms driectory that will include all of the required ganglia rpms plus some important files.
+- Run the install.sh script: install.sh
+- This will install all of the rpms, copy the files to where they need to be, and retart the gmond and httpd servers.
+- All metric data will be forwarded to the Ganglia server at http://100.64.149.71/ganglia. 
