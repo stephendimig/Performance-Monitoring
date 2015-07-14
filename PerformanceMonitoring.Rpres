@@ -117,6 +117,8 @@ The Ganglia Web Server runs the Ganglia Meta Daemon (gmetad) and Ganglia PHP Web
 
 - *rrd2csv.py* Ganglia stores metric data from the monitored nodes in an RRD database. RRD has a binary format and is laid out with one metric per file. The rrd2csv.py allows you to generate a csv file from the RRD data so you can do more detailed analysis on it.
 
+Ganglia is great for active monitoring but not as good for presenting results or for historic data. The following are examples of Ganglia graphs.
+
 
 Ganglia PSBR CPU Example
 ========================================================
