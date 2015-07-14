@@ -143,8 +143,7 @@ R-Studio offers dynamic report generation through knitr which is a package that 
 
 - *Knitr* allows R code and documentation to exist in the same file so that changing the data results in a whole new report.
 - *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
-- *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
-- *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report for PSBR.
+- *psbr.Rmd* Template of a perfomance analysis report for PSBR.
 
 The following graphs are the type of thing you might see in a dynamic report using R-Studio. Note you can also do statistical analysis on the data. Dynamic reports are great for comparing runs with different configurations, etc.
 
@@ -162,8 +161,6 @@ Example Table
 | RAM Maximum              :| `r max(df$Ram, na.rm=TRUE)` % |
 | RAM Average              :| `r mean(df$Ram, na.rm=TRUE)` % |
 | CPU Usage                :| `r mean(df$Cpu, na.rm=TRUE)` % |
-| Number Bindings - Start  :| `r df$NumPsbrBindingRecs[1]`|
-| Number Bindings - End    :| `r df$NumPsbrBindingRecs[dim(df)[[1]]]`|
 | Number Bindings - Mean   :| `r mean(df$NumPsbrBindingRecs, na.rm=TRUE)`|
 | Ingress Stack Event Rate :| `r mean(df$IngressStackEventRate, na.rm=TRUE)` |
 | Egress Stack Event Rate  :| `r mean(df$EgressStackEventRate, na.rm=TRUE)` |
@@ -228,7 +225,7 @@ R-Studio offers dynamic presentation generation through the R-Presenation packag
 - *R Presentation* allows R code and documentation to exist in the same file so that changing the data results in a whole new presentation.
 - *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
 - *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
-- *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
+- *psbr.Rpres* Template of a dynamic presentation for PSBR.
 - *Interactive Charts* R Presentaion has support for interactive charts through rCharts or GoogleVis.
 
 Example googleVis chart
