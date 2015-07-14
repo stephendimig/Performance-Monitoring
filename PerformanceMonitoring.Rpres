@@ -157,6 +157,7 @@ The following graphs are the type of thing you might see in a dynamic report usi
 Dynamic Report Generation (continued)
 ========================================================
 
+
 ![alt text](DynamicReportGeneration.gif)
 
 Example Table
@@ -240,6 +241,7 @@ R-Studio offers dynamic presentation generation through the R-Presenation packag
 
 Dynamic Presentation Generation (continued)
 ========================================================
+
 
 ![alt text](DynamicPresentationGeneration.gif)
 

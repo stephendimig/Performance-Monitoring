@@ -1,7 +1,7 @@
 Performance Monitoring Using Ganglia
 ========================================================
 author: Stephen Dimig
-date: Tue Jul 14 08:31:45 2015
+date: Tue Jul 14 08:34:13 2015
 transition: rotate
 
 
@@ -91,6 +91,7 @@ The following graphs are the type of thing you might see in a dynamic report usi
 Dynamic Report Generation (continued)
 ========================================================
 
+
 ![alt text](DynamicReportGeneration.gif)
 
 Example Table
@@ -140,6 +141,7 @@ R-Studio offers dynamic presentation generation through the R-Presenation packag
 Dynamic Presentation Generation (continued)
 ========================================================
 
+
 ![alt text](DynamicPresentationGeneration.gif)
 
 
@@ -147,14 +149,14 @@ Example googleVis chart
 ========================================================
 
 <!-- LineChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Tue Jul 14 08:31:49 2015 -->
+<!-- Tue Jul 14 08:34:16 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataLineChartID170977ac63f0f () {
+function gvisDataLineChartID170fa5e885c61 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1246,15 +1248,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartLineChartID170977ac63f0f() {
-var data = gvisDataLineChartID170977ac63f0f();
+function drawChartLineChartID170fa5e885c61() {
+var data = gvisDataLineChartID170fa5e885c61();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.LineChart(
-    document.getElementById('LineChartID170977ac63f0f')
+    document.getElementById('LineChartID170fa5e885c61')
     );
     chart.draw(data,options);
     
@@ -1278,9 +1280,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartLineChartID170977ac63f0f);
+callbacks.push(drawChartLineChartID170fa5e885c61);
 })();
-function displayChartLineChartID170977ac63f0f() {
+function displayChartLineChartID170fa5e885c61() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1304,11 +1306,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID170977ac63f0f"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID170fa5e885c61"></script>
  
 <!-- divChart -->
   
-<div id="LineChartID170977ac63f0f" 
+<div id="LineChartID170fa5e885c61" 
   style="width: 800; height: 500;">
 </div>
 
@@ -1316,14 +1318,14 @@ callbacks.shift()();
 Example googleVis bar chart
 ========================================================
 <!-- BarChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Tue Jul 14 08:31:49 2015 -->
+<!-- Tue Jul 14 08:34:16 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataBarChartID17097359b06fb () {
+function gvisDataBarChartID170fa38d2345f () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1351,15 +1353,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartBarChartID17097359b06fb() {
-var data = gvisDataBarChartID17097359b06fb();
+function drawChartBarChartID170fa38d2345f() {
+var data = gvisDataBarChartID170fa38d2345f();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.BarChart(
-    document.getElementById('BarChartID17097359b06fb')
+    document.getElementById('BarChartID170fa38d2345f')
     );
     chart.draw(data,options);
     
@@ -1383,9 +1385,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartBarChartID17097359b06fb);
+callbacks.push(drawChartBarChartID170fa38d2345f);
 })();
-function displayChartBarChartID17097359b06fb() {
+function displayChartBarChartID170fa38d2345f() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1409,25 +1411,25 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID17097359b06fb"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID170fa38d2345f"></script>
  
 <!-- divChart -->
   
-<div id="BarChartID17097359b06fb" 
+<div id="BarChartID170fa38d2345f" 
   style="width: 800; height: 500;">
 </div>
 
 Example googleVis pie chart
 ========================================================
 <!-- PieChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Tue Jul 14 08:31:49 2015 -->
+<!-- Tue Jul 14 08:34:16 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataPieChartID1709723658909 () {
+function gvisDataPieChartID170fa5ca43394 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1455,15 +1457,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartPieChartID1709723658909() {
-var data = gvisDataPieChartID1709723658909();
+function drawChartPieChartID170fa5ca43394() {
+var data = gvisDataPieChartID170fa5ca43394();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.PieChart(
-    document.getElementById('PieChartID1709723658909')
+    document.getElementById('PieChartID170fa5ca43394')
     );
     chart.draw(data,options);
     
@@ -1487,9 +1489,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartPieChartID1709723658909);
+callbacks.push(drawChartPieChartID170fa5ca43394);
 })();
-function displayChartPieChartID1709723658909() {
+function displayChartPieChartID170fa5ca43394() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1513,11 +1515,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID1709723658909"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID170fa5ca43394"></script>
  
 <!-- divChart -->
   
-<div id="PieChartID1709723658909" 
+<div id="PieChartID170fa5ca43394" 
   style="width: 800; height: 500;">
 </div>
 
