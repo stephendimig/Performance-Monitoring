@@ -128,7 +128,6 @@ You can do analysis on the CSV file for a performance run on your local PC using
 
 Active Monitoring with Ganglia
 ========================================================
-Ganglia is great for active monitoring but not as good for presenting results or for historic data. 
 
 ![alt text](GangliaDataCollection.gif)
 
