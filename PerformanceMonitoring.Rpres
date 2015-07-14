@@ -137,6 +137,16 @@ You can do analysis on the CSV file for a performance run on your loacal PC usin
 - *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report.
 - *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
 
+Dynamic Report Generation
+========================================================
+R-Studio offers dynamic report generation through knitr which is a package that enables integration of R code into reports (ie; you can include code and data in the same report template).
+
+- *Knitr* allows R code and documentation to exist in the same file so that changing the data results in a whole new report.
+- *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
+- *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
+- *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report for PSBR.
+
+The following graphs are the type of thing you might see in a dynamic report using R-Studio. Note you can also do statistical analysis on the data. Dynamic reports are great for comparing runs with different configurations, etc.
 
 Example Table
 ========================================================
@@ -161,7 +171,7 @@ Example Table
 Example CPU Analysis
 ========================================================
 
-```{r, echo=FALSE,fig.height=9, fig.width=9}
+```{r, echo=FALSE,fig.height=8, fig.width=8}
 ggplot(df, aes(Date, x=Date, y=Cpu)) + 
     scale_colour_manual("CPU", breaks=c("Cpu", "Minor", "Major", "Critical", "Trend"), values=c('blue', 'orange', 'green', 'red', 'brown')) +
     geom_line(aes(y = Cpu, colour="Cpu")) +
@@ -179,7 +189,7 @@ ggplot(df, aes(Date, x=Date, y=Cpu)) +
 Example Database Composition
 ========================================================
 
-```{r, echo=FALSE,fig.height=9, fig.width=9}
+```{r, echo=FALSE,fig.height=8, fig.width=8}
 types <- c("ImsiAnchor", "ImsiApnAnchor", "MsisdnAlt", "MsisdnApnAlt", "Ipv4Alt", "Ipv4AltV2", "Ipv6Alt", "Ipv6AltV2", "Session", "OcSession", "OcClientHost")
 values <- c(mean(df$ImsiAnchorKeyRecs), mean(df$ImsiApnAnchorKeyRecs), mean(df$MsisdnAlternateKeyRecs), mean(df$MsisdnApnAlternateKeyRecs), mean(df$Ipv4AlternateKeyRecs), mean(df$Ipv4AlternateKeyV2Recs), mean(df$Ipv6AlternateKeyRecs), mean(df$Ipv6AlternateKeyV2Recs), mean(df$SessionRecs), mean(df$OcSessionRecs), mean(df$OcClientHostRecs))
 mydf <- data.frame(types, values)
@@ -198,7 +208,7 @@ Example ComAgent Stack Event Rates
 ========================================================
 
 
-```{r, echo=FALSE,fig.height=9, fig.width=9}
+```{r, echo=FALSE,fig.height=8, fig.width=8}
 ggplot(df, aes(Date)) + 
     scale_colour_manual("Rate", breaks=c("Ingress", "Egress",  "IngressMean", "EgressMean"), values=c("red", "blue", "orange", "purple")) +
     geom_line(aes(y = IngressStackEventRate, colour="Ingress")) + 
@@ -210,6 +220,16 @@ ggplot(df, aes(Date)) +
     ggtitle("PSBR ComAgent Stack Event Rates")
     
 ```
+
+Dynamic Presentation Generation
+========================================================
+R-Studio offers dynamic presentation generation through the R-Presenation package that enables integration of R code into presentations (ie; you can include code and data in the same presentation template).
+
+- *R Presentation* allows R code and documentation to exist in the same file so that changing the data results in a whole new presentation.
+- *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
+- *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
+- *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
+- *Interactive Charts* R Presentaion has support for interactive charts through rCharts or GoogleVis.
 
 Example googleVis chart
 ========================================================
