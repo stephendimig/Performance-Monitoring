@@ -1,7 +1,7 @@
 Performance Monitoring Using Ganglia
 ========================================================
 author: Stephen Dimig
-date: Mon Jul 13 21:12:26 2015
+date: Tue Jul 14 08:29:09 2015
 transition: rotate
 
 
@@ -51,8 +51,22 @@ The Ganglia Web Server runs the Ganglia Meta Daemon (gmetad) and Ganglia PHP Web
 
 - *rrd2csv.py* Ganglia stores metric data from the monitored nodes in an RRD database. RRD has a binary format and is laid out with one metric per file. The rrd2csv.py allows you to generate a csv file from the RRD data so you can do more detailed analysis on it.
 
-Ganglia is great for active monitoring but not as good for presenting results or for historic data. The following are examples of Ganglia graphs.
 
+Your PC
+========================================================
+You can do analysis on the CSV file for a performance run on your local PC using Excel or R-Studio. I prefer the second option because it easier. You can generate a report for a new run by just changing out the csv file and hitting a single button.
+
+- *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report.
+- *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
+
+
+Active Monitoring with Ganglia
+========================================================
+Ganglia is great for active monitoring but not as good for presenting results or for historic data. 
+
+![alt text](GangliaDataCollection.gif)
+
+The following are examples of Ganglia graphs.
 
 Ganglia PSBR CPU Example
 ========================================================
@@ -66,13 +80,6 @@ Ganglia PSBR Session Recs Example
 ![alt text](ganglia_session_recs.png)
 
 
-Your PC
-========================================================
-You can do analysis on the CSV file for a performance run on your local PC using Excel or R-Studio. I prefer the second option because it easier. You can generate a report for a new run by just changing out the csv file and hitting a single button.
-
-- *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report.
-- *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
-
 Dynamic Report Generation
 ========================================================
 R-Studio offers dynamic report generation through knitr which is a package that enables integration of R code into reports (ie; you can include code and data in the same report template).
@@ -81,6 +88,11 @@ R-Studio offers dynamic report generation through knitr which is a package that 
 - *psbr.Rmd* An R-Markdown template of a perfomance analysis report for PSBR.
 
 The following graphs are the type of thing you might see in a dynamic report using R-Studio. Note you can also do statistical analysis on the data. Dynamic reports are great for comparing runs with different configurations, etc.
+
+Dynamic Report Generation (continued)
+========================================================
+
+![alt text](DynamicReportGeneration.gif)
 
 Example Table
 ========================================================
@@ -126,18 +138,24 @@ R-Studio offers dynamic presentation generation through the R-Presenation packag
 - *psbr.Rpres* An R-mardown template of a dynamic presentation for PSBR.
 - *Interactive Charts* R Presentaion has support for interactive charts through rCharts or GoogleVis.
 
+Dynamic Presentation Generation (continued)
+========================================================
+
+![alt text](DynamicPresentationGeneration.gif)
+
+
 Example googleVis chart
 ========================================================
 
 <!-- LineChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Mon Jul 13 21:12:31 2015 -->
+<!-- Tue Jul 14 08:29:13 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataLineChartID1629b52575a75 () {
+function gvisDataLineChartID17015257e04d4 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1229,15 +1247,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartLineChartID1629b52575a75() {
-var data = gvisDataLineChartID1629b52575a75();
+function drawChartLineChartID17015257e04d4() {
+var data = gvisDataLineChartID17015257e04d4();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.LineChart(
-    document.getElementById('LineChartID1629b52575a75')
+    document.getElementById('LineChartID17015257e04d4')
     );
     chart.draw(data,options);
     
@@ -1261,9 +1279,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartLineChartID1629b52575a75);
+callbacks.push(drawChartLineChartID17015257e04d4);
 })();
-function displayChartLineChartID1629b52575a75() {
+function displayChartLineChartID17015257e04d4() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1287,11 +1305,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID1629b52575a75"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID17015257e04d4"></script>
  
 <!-- divChart -->
   
-<div id="LineChartID1629b52575a75" 
+<div id="LineChartID17015257e04d4" 
   style="width: 800; height: 500;">
 </div>
 
@@ -1299,14 +1317,14 @@ callbacks.shift()();
 Example googleVis bar chart
 ========================================================
 <!-- BarChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Mon Jul 13 21:12:31 2015 -->
+<!-- Tue Jul 14 08:29:13 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataBarChartID1629b475d6569 () {
+function gvisDataBarChartID1701526e11422 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1334,15 +1352,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartBarChartID1629b475d6569() {
-var data = gvisDataBarChartID1629b475d6569();
+function drawChartBarChartID1701526e11422() {
+var data = gvisDataBarChartID1701526e11422();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.BarChart(
-    document.getElementById('BarChartID1629b475d6569')
+    document.getElementById('BarChartID1701526e11422')
     );
     chart.draw(data,options);
     
@@ -1366,9 +1384,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartBarChartID1629b475d6569);
+callbacks.push(drawChartBarChartID1701526e11422);
 })();
-function displayChartBarChartID1629b475d6569() {
+function displayChartBarChartID1701526e11422() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1392,25 +1410,25 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID1629b475d6569"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID1701526e11422"></script>
  
 <!-- divChart -->
   
-<div id="BarChartID1629b475d6569" 
+<div id="BarChartID1701526e11422" 
   style="width: 800; height: 500;">
 </div>
 
 Example googleVis pie chart
 ========================================================
 <!-- PieChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Mon Jul 13 21:12:31 2015 -->
+<!-- Tue Jul 14 08:29:13 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataPieChartID1629b370f5f88 () {
+function gvisDataPieChartID1701511fcdcbb () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1438,15 +1456,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartPieChartID1629b370f5f88() {
-var data = gvisDataPieChartID1629b370f5f88();
+function drawChartPieChartID1701511fcdcbb() {
+var data = gvisDataPieChartID1701511fcdcbb();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.PieChart(
-    document.getElementById('PieChartID1629b370f5f88')
+    document.getElementById('PieChartID1701511fcdcbb')
     );
     chart.draw(data,options);
     
@@ -1470,9 +1488,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartPieChartID1629b370f5f88);
+callbacks.push(drawChartPieChartID1701511fcdcbb);
 })();
-function displayChartPieChartID1629b370f5f88() {
+function displayChartPieChartID1701511fcdcbb() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1496,11 +1514,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID1629b370f5f88"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID1701511fcdcbb"></script>
  
 <!-- divChart -->
   
-<div id="PieChartID1629b370f5f88" 
+<div id="PieChartID1701511fcdcbb" 
   style="width: 800; height: 500;">
 </div>
 

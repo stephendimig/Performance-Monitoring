@@ -117,8 +117,22 @@ The Ganglia Web Server runs the Ganglia Meta Daemon (gmetad) and Ganglia PHP Web
 
 - *rrd2csv.py* Ganglia stores metric data from the monitored nodes in an RRD database. RRD has a binary format and is laid out with one metric per file. The rrd2csv.py allows you to generate a csv file from the RRD data so you can do more detailed analysis on it.
 
-Ganglia is great for active monitoring but not as good for presenting results or for historic data. The following are examples of Ganglia graphs.
 
+Your PC
+========================================================
+You can do analysis on the CSV file for a performance run on your local PC using Excel or R-Studio. I prefer the second option because it easier. You can generate a report for a new run by just changing out the csv file and hitting a single button.
+
+- *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report.
+- *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
+
+
+Active Monitoring with Ganglia
+========================================================
+Ganglia is great for active monitoring but not as good for presenting results or for historic data. 
+
+![alt text](GangliaDataCollection.gif)
+
+The following are examples of Ganglia graphs.
 
 Ganglia PSBR CPU Example
 ========================================================
@@ -132,13 +146,6 @@ Ganglia PSBR Session Recs Example
 ![alt text](ganglia_session_recs.png)
 
 
-Your PC
-========================================================
-You can do analysis on the CSV file for a performance run on your local PC using Excel or R-Studio. I prefer the second option because it easier. You can generate a report for a new run by just changing out the csv file and hitting a single button.
-
-- *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report.
-- *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
-
 Dynamic Report Generation
 ========================================================
 R-Studio offers dynamic report generation through knitr which is a package that enables integration of R code into reports (ie; you can include code and data in the same report template).
@@ -147,6 +154,11 @@ R-Studio offers dynamic report generation through knitr which is a package that 
 - *psbr.Rmd* An R-Markdown template of a perfomance analysis report for PSBR.
 
 The following graphs are the type of thing you might see in a dynamic report using R-Studio. Note you can also do statistical analysis on the data. Dynamic reports are great for comparing runs with different configurations, etc.
+
+Dynamic Report Generation (continued)
+========================================================
+
+![alt text](DynamicReportGeneration.gif)
 
 Example Table
 ========================================================
@@ -226,6 +238,12 @@ R-Studio offers dynamic presentation generation through the R-Presenation packag
 - *R Presentation* allows R code and documentation to exist in the same file so that changing the data results in a whole new presentation. Accessed through R-Studio.
 - *psbr.Rpres* An R-mardown template of a dynamic presentation for PSBR.
 - *Interactive Charts* R Presentaion has support for interactive charts through rCharts or GoogleVis.
+
+Dynamic Presentation Generation (continued)
+========================================================
+
+![alt text](DynamicPresentationGeneration.gif)
+
 
 Example googleVis chart
 ========================================================
