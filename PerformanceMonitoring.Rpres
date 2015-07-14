@@ -130,7 +130,7 @@ Ganglia PSBR Session Recs Example
 ![alt text](ganglia_session_recs.png)
 
 
-User PC
+Your PC
 ========================================================
 You can do analysis on the CSV file for a performance run on your loacal PC using Excel or R-Studio. I prefer the second option because it easier. You can generate a report for a new run by just changing out the csv file and hitting a single button.
 
