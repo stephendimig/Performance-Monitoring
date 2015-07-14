@@ -142,8 +142,7 @@ Dynamic Report Generation
 R-Studio offers dynamic report generation through knitr which is a package that enables integration of R code into reports (ie; you can include code and data in the same report template).
 
 - *Knitr* allows R code and documentation to exist in the same file so that changing the data results in a whole new report.
-- *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
-- *psbr.Rmd* Template of a perfomance analysis report for PSBR.
+- *psbr.Rmd* An R-Markdown template of a perfomance analysis report for PSBR.
 
 The following graphs are the type of thing you might see in a dynamic report using R-Studio. Note you can also do statistical analysis on the data. Dynamic reports are great for comparing runs with different configurations, etc.
 
@@ -222,9 +221,8 @@ Dynamic Presentation Generation
 ========================================================
 R-Studio offers dynamic presentation generation through the R-Presenation package that enables integration of R code into presentations (ie; you can include code and data in the same presentation template).
 
-- *R Presentation* allows R code and documentation to exist in the same file so that changing the data results in a whole new presentation.
-- *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
-- *psbr.Rpres* Template of a dynamic presentation for PSBR.
+- *R Presentation* allows R code and documentation to exist in the same file so that changing the data results in a whole new presentation. Accessed through R-Studio.
+- *psbr.Rpres* An R-mardown template of a dynamic presentation for PSBR.
 - *Interactive Charts* R Presentaion has support for interactive charts through rCharts or GoogleVis.
 
 Example googleVis chart
