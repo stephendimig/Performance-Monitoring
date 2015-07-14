@@ -224,7 +224,6 @@ R-Studio offers dynamic presentation generation through the R-Presenation packag
 
 - *R Presentation* allows R code and documentation to exist in the same file so that changing the data results in a whole new presentation.
 - *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
-- *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
 - *psbr.Rpres* Template of a dynamic presentation for PSBR.
 - *Interactive Charts* R Presentaion has support for interactive charts through rCharts or GoogleVis.
 
