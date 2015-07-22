@@ -1,7 +1,7 @@
 Performance Monitoring Using Ganglia/R
 ========================================================
 author: Stephen Dimig
-date: Wed Jul 22 17:10:36 2015
+date: Wed Jul 22 17:17:23 2015
 transition: rotate
 
 
@@ -26,31 +26,10 @@ RStudio is a free and open source integrated development environment (IDE) for R
 - *RStudio* is distributed under the GNU General Public License
 
 
-PSBR
-========================================================
-A PSBR is a high performance Session Binding Repository used in 4G phone networks using the Diameter signaling protocol.
-
-- The PSBR is the unit under test in this scenario
-- The PSBR is a high capacity, highly available, distributed hash table type database.
-- Performance monitoring and analysis is critical for highly available systems
-
-VE-DSR Performance Monitoring 
+Ganglia/R Performance Monitoring 
 ========================================================
 
 ![alt text](system-diagram_2.png)
-
-
-Active Monitoring with Ganglia
-========================================================
-
-![alt text](GangliaDataCollection_2.png)
-
-
-Ganglia PSBR CPU Example
-========================================================
-
-![alt text](ganglia_cpu.png)
-
 
 Active Monitoring with Ganglia (continued)
 ========================================================
@@ -58,6 +37,12 @@ Active Monitoring with Ganglia (continued)
 - Ganglia is general purpose though and does not know how to group the data intelligently.
 - Ganglia has no idea about system thresholds for data (ie; what is high or low)
 - Ganglia is also weak for doing more advanced statisical modelling or computations(trendlines, mean, min, max, etc.)
+
+
+Ganglia PSBR CPU Example
+========================================================
+
+![alt text](ganglia_cpu.png)
 
 
 Dynamic Report Generation
@@ -124,14 +109,14 @@ Example googleVis chart
 ========================================================
 
 <!-- LineChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Wed Jul 22 17:10:39 2015 -->
+<!-- Wed Jul 22 17:17:27 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataLineChartID128742d3d88d3 () {
+function gvisDataLineChartID129927c84cc4c () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1223,15 +1208,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartLineChartID128742d3d88d3() {
-var data = gvisDataLineChartID128742d3d88d3();
+function drawChartLineChartID129927c84cc4c() {
+var data = gvisDataLineChartID129927c84cc4c();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.LineChart(
-    document.getElementById('LineChartID128742d3d88d3')
+    document.getElementById('LineChartID129927c84cc4c')
     );
     chart.draw(data,options);
     
@@ -1255,9 +1240,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartLineChartID128742d3d88d3);
+callbacks.push(drawChartLineChartID129927c84cc4c);
 })();
-function displayChartLineChartID128742d3d88d3() {
+function displayChartLineChartID129927c84cc4c() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1281,11 +1266,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID128742d3d88d3"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID129927c84cc4c"></script>
  
 <!-- divChart -->
   
-<div id="LineChartID128742d3d88d3" 
+<div id="LineChartID129927c84cc4c" 
   style="width: 800; height: 500;">
 </div>
 
@@ -1293,14 +1278,14 @@ callbacks.shift()();
 Example googleVis pie chart
 ========================================================
 <!-- PieChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Wed Jul 22 17:10:39 2015 -->
+<!-- Wed Jul 22 17:17:28 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataPieChartID128741e430573 () {
+function gvisDataPieChartID1299267368c71 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1328,15 +1313,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartPieChartID128741e430573() {
-var data = gvisDataPieChartID128741e430573();
+function drawChartPieChartID1299267368c71() {
+var data = gvisDataPieChartID1299267368c71();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.PieChart(
-    document.getElementById('PieChartID128741e430573')
+    document.getElementById('PieChartID1299267368c71')
     );
     chart.draw(data,options);
     
@@ -1360,9 +1345,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartPieChartID128741e430573);
+callbacks.push(drawChartPieChartID1299267368c71);
 })();
-function displayChartPieChartID128741e430573() {
+function displayChartPieChartID1299267368c71() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1386,11 +1371,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID128741e430573"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID1299267368c71"></script>
  
 <!-- divChart -->
   
-<div id="PieChartID128741e430573" 
+<div id="PieChartID1299267368c71" 
   style="width: 800; height: 500;">
 </div>
 

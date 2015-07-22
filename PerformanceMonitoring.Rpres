@@ -91,31 +91,10 @@ RStudio is a free and open source integrated development environment (IDE) for R
 - *RStudio* is distributed under the GNU General Public License
 
 
-PSBR
-========================================================
-A PSBR is a high performance Session Binding Repository used in 4G phone networks using the Diameter signaling protocol.
-
-- The PSBR is the unit under test in this scenario
-- The PSBR is a high capacity, highly available, distributed hash table type database.
-- Performance monitoring and analysis is critical for highly available systems
-
-VE-DSR Performance Monitoring 
+Ganglia/R Performance Monitoring 
 ========================================================
 
 ![alt text](system-diagram_2.png)
-
-
-Active Monitoring with Ganglia
-========================================================
-
-![alt text](GangliaDataCollection_2.png)
-
-
-Ganglia PSBR CPU Example
-========================================================
-
-![alt text](ganglia_cpu.png)
-
 
 Active Monitoring with Ganglia (continued)
 ========================================================
@@ -123,6 +102,12 @@ Active Monitoring with Ganglia (continued)
 - Ganglia is general purpose though and does not know how to group the data intelligently.
 - Ganglia has no idea about system thresholds for data (ie; what is high or low)
 - Ganglia is also weak for doing more advanced statisical modelling or computations(trendlines, mean, min, max, etc.)
+
+
+Ganglia PSBR CPU Example
+========================================================
+
+![alt text](ganglia_cpu.png)
 
 
 Dynamic Report Generation
