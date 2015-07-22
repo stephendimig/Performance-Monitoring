@@ -1,7 +1,7 @@
-Performance Monitoring Using Ganglia
+Performance Monitoring Using Ganglia/R
 ========================================================
 author: Stephen Dimig
-date: Tue Jul 14 08:40:21 2015
+date: Wed Jul 22 16:37:44 2015
 transition: rotate
 
 
@@ -20,36 +20,33 @@ R-Studio
 ========================================================
 RStudio is a free and open source integrated development environment (IDE) for R, a programming language for statistical computing and graphics.
 - *R* is a programming language for statistical computing and graphics. 
-- *Knitr*  is an engine for dynamic report generation with R. It is a package in R that enables integration of R code into reports (ie; you can include code and data in the same report template).
+- *Knitr*  is an engine for dynamic report generation with R. It enables integration of R code into reports.
 - *R Mardown* is a  lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML.
+- *Shiny* is a web application framework for interactive web applications R requiring no HTML, CSS, or JavaScript 
 - *RStudio* is distributed under the GNU General Public License
+
+
+PSBR
+========================================================
+A PSBR is a high performance Session Binding Repository used in 4G phone networks using the Diameter signaling protocol.
+
+- The PSBR is the unit under test in this scenario
+- The PSBR is a high capacity, highly available, distributed hash table type database.
+- Performance monitoring and analysis is critical for highly available systems
 
 VE-DSR Performance Monitoring 
 ========================================================
 
-![alt text](system-diagram.gif)
-
-PSBR
-========================================================
-The Ganglia Monitoring Daemon (gmond) runs on the PSBR. It periodically gathers metric data and forwards it to the Ganglia Web server through the NO which acts as a relay.
-
-- *gmond.conf* is a configuration file in /etc/ganglia/gmod.conf. It contains information that gmond requires to run.
-- *psbr.py* is a python script that is used to gather all of the psbr related metrics. The gmond daemon will periodically invoke this script. It contians definitions for all of the metrics including a function to invoke and it's type.
-- *psbr.pyconf* this file contains the name of each metric defined in psbr.py above plus a title that will be displayed by the web interface.
-
-
-NO
-========================================================
-The Ganglia Monitoring Daemon (gmond) runs on the PSBR but it acts only as a relay forwarding data from the PSBRs to the Ganglia server. All of our lab metrics currently go through the same NO.
-
-- *gmond.conf* is a configuration file in /etc/ganglia/gmod.conf. It contains information that gmond requires to run.
+![alt text](system-diagram_2.png)
 
 
 Ganglia Web Server
 ========================================================
 The Ganglia Web Server runs the Ganglia Meta Daemon (gmetad) and Ganglia PHP Web Front-end. We run this on an old G6 card in the lab. It has more extensive RPMs installed on it than a client.
 
-- *rrd2csv.py* Ganglia stores metric data from the monitored nodes in an RRD database. RRD has a binary format and is laid out with one metric per file. The rrd2csv.py allows you to generate a csv file from the RRD data so you can do more detailed analysis on it.
+- *rrd2csv.py* A script for extracting a csv file from an RRD database.
+- *psbrreptgen.py* A command line script for generating on-demand dynamic reports
+- *PSBR Report Generator* A shiny app for viewing and generating on-demand dynamic reports and presentations (future)
 
 
 Your PC
@@ -63,9 +60,8 @@ You can do analysis on the CSV file for a performance run on your local PC using
 Active Monitoring with Ganglia
 ========================================================
 
-![alt text](GangliaDataCollection.gif)
+![alt text](GangliaDataCollection_2.png)
 
-The following are examples of Ganglia graphs.
 
 Ganglia PSBR CPU Example
 ========================================================
@@ -77,6 +73,14 @@ Ganglia PSBR Session Recs Example
 ========================================================
 
 ![alt text](ganglia_session_recs.png)
+
+
+Active Monitoring with Ganglia (continued)
+========================================================
+- Ganglia is great for data collection and active monitoring. 
+- Ganglia is general purpose though and does not know how to group the data intelligently.
+- Ganglia has no idea about system thresholds for data (ie; what is high or low)
+- Ganglia is also weak for doing more advanced statisical modelling or computations(trendlines, mean, min, max, etc.)
 
 
 Dynamic Report Generation
@@ -91,8 +95,7 @@ The following graphs are the type of thing you might see in a dynamic report usi
 Dynamic Report Generation (continued)
 ========================================================
 
-
-![alt text](DynamicReportGeneration.gif)
+![alt text](DynamicReportGeneration_2.png)
 
 Example Table
 ========================================================
@@ -130,7 +133,7 @@ Example ComAgent Stack Event Rates
 
 ![plot of chunk unnamed-chunk-4](PerformanceMonitoring-figure/unnamed-chunk-4-1.png) 
 
-Dynamic Presentation Generation
+Dynamic Presentation Generation (future)
 ========================================================
 R-Studio offers dynamic presentation generation through the R-Presenation package that enables integration of R code into presentations (ie; you can include code and data in the same presentation template).
 
@@ -142,21 +145,21 @@ Dynamic Presentation Generation (continued)
 ========================================================
 
 
-![alt text](DynamicPresentationGeneration.gif)
+![alt text](DynamicPresentationGeneration_2.png)
 
 
 Example googleVis chart
 ========================================================
 
 <!-- LineChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Tue Jul 14 08:40:26 2015 -->
+<!-- Wed Jul 22 16:37:48 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataLineChartID17201217f4459 () {
+function gvisDataLineChartID122db4de476ac () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1248,15 +1251,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartLineChartID17201217f4459() {
-var data = gvisDataLineChartID17201217f4459();
+function drawChartLineChartID122db4de476ac() {
+var data = gvisDataLineChartID122db4de476ac();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.LineChart(
-    document.getElementById('LineChartID17201217f4459')
+    document.getElementById('LineChartID122db4de476ac')
     );
     chart.draw(data,options);
     
@@ -1280,9 +1283,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartLineChartID17201217f4459);
+callbacks.push(drawChartLineChartID122db4de476ac);
 })();
-function displayChartLineChartID17201217f4459() {
+function displayChartLineChartID122db4de476ac() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1306,11 +1309,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID17201217f4459"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID122db4de476ac"></script>
  
 <!-- divChart -->
   
-<div id="LineChartID17201217f4459" 
+<div id="LineChartID122db4de476ac" 
   style="width: 800; height: 500;">
 </div>
 
@@ -1318,14 +1321,14 @@ callbacks.shift()();
 Example googleVis bar chart
 ========================================================
 <!-- BarChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Tue Jul 14 08:40:26 2015 -->
+<!-- Wed Jul 22 16:37:48 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataBarChartID1720115197a87 () {
+function gvisDataBarChartID122db14fd9c96 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1353,15 +1356,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartBarChartID1720115197a87() {
-var data = gvisDataBarChartID1720115197a87();
+function drawChartBarChartID122db14fd9c96() {
+var data = gvisDataBarChartID122db14fd9c96();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.BarChart(
-    document.getElementById('BarChartID1720115197a87')
+    document.getElementById('BarChartID122db14fd9c96')
     );
     chart.draw(data,options);
     
@@ -1385,9 +1388,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartBarChartID1720115197a87);
+callbacks.push(drawChartBarChartID122db14fd9c96);
 })();
-function displayChartBarChartID1720115197a87() {
+function displayChartBarChartID122db14fd9c96() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1411,25 +1414,25 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID1720115197a87"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID122db14fd9c96"></script>
  
 <!-- divChart -->
   
-<div id="BarChartID1720115197a87" 
+<div id="BarChartID122db14fd9c96" 
   style="width: 800; height: 500;">
 </div>
 
 Example googleVis pie chart
 ========================================================
 <!-- PieChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Tue Jul 14 08:40:26 2015 -->
+<!-- Wed Jul 22 16:37:48 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataPieChartID1720125f6eb8 () {
+function gvisDataPieChartID122db613a75 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1457,15 +1460,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartPieChartID1720125f6eb8() {
-var data = gvisDataPieChartID1720125f6eb8();
+function drawChartPieChartID122db613a75() {
+var data = gvisDataPieChartID122db613a75();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.PieChart(
-    document.getElementById('PieChartID1720125f6eb8')
+    document.getElementById('PieChartID122db613a75')
     );
     chart.draw(data,options);
     
@@ -1489,9 +1492,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartPieChartID1720125f6eb8);
+callbacks.push(drawChartPieChartID122db613a75);
 })();
-function displayChartPieChartID1720125f6eb8() {
+function displayChartPieChartID122db613a75() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1515,22 +1518,26 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID1720125f6eb8"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID122db613a75"></script>
  
 <!-- divChart -->
   
-<div id="PieChartID1720125f6eb8" 
+<div id="PieChartID122db613a75" 
   style="width: 800; height: 500;">
 </div>
 
-Client Installation
+On-Demand Reports
 ========================================================
 
-- You can find a gzip file with a client insallation at ~dimig/Public/ganglia.
-- Scp the gzip file to the target machine
-- Uncompress the archive: gunzip ganglia.rpms.tar.gz
-- Untar the archive file: tar xvf ganglia.rpms.tar
-- This will create an rpms driectory that will include all of the required ganglia rpms plus some important files.
-- Run the install.sh script: install.sh
-- This will install all of the rpms, copy the files to where they need to be, and retart the gmond and httpd servers.
-- All metric data will be forwarded to the Ganglia server at http://100.64.149.71/ganglia. 
+![alt text](OnDemandReports_2.png)
+
+PSBR Report Generator
+========================================================
+The PSBR Report Generator is an on-denmand report generator for a performance 
+data gathering system that uses Ganglia for data collection and active  monitoring and R for customizable reports. The PSBR Report Generator is
+used to report on various aspects of system performance such as CPU and 
+memory usage, internal queue depths, messages rates, and database size and
+composition.
+
+- Allows you to view a report on line through a web interface.
+- Allows you to generate a report and download it to your local PC.
