@@ -1,7 +1,7 @@
 Performance Monitoring Using Ganglia/R
 ========================================================
 author: Stephen Dimig
-date: Wed Jul 22 16:37:44 2015
+date: Wed Jul 22 17:10:36 2015
 transition: rotate
 
 
@@ -40,23 +40,6 @@ VE-DSR Performance Monitoring
 ![alt text](system-diagram_2.png)
 
 
-Ganglia Web Server
-========================================================
-The Ganglia Web Server runs the Ganglia Meta Daemon (gmetad) and Ganglia PHP Web Front-end. We run this on an old G6 card in the lab. It has more extensive RPMs installed on it than a client.
-
-- *rrd2csv.py* A script for extracting a csv file from an RRD database.
-- *psbrreptgen.py* A command line script for generating on-demand dynamic reports
-- *PSBR Report Generator* A shiny app for viewing and generating on-demand dynamic reports and presentations (future)
-
-
-Your PC
-========================================================
-You can do analysis on the CSV file for a performance run on your local PC using Excel or R-Studio. I prefer the second option because it easier. You can generate a report for a new run by just changing out the csv file and hitting a single button.
-
-- *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report.
-- *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
-
-
 Active Monitoring with Ganglia
 ========================================================
 
@@ -67,12 +50,6 @@ Ganglia PSBR CPU Example
 ========================================================
 
 ![alt text](ganglia_cpu.png)
-
-
-Ganglia PSBR Session Recs Example
-========================================================
-
-![alt text](ganglia_session_recs.png)
 
 
 Active Monitoring with Ganglia (continued)
@@ -127,11 +104,6 @@ Example Database Composition
 ![plot of chunk unnamed-chunk-3](PerformanceMonitoring-figure/unnamed-chunk-3-1.png) 
 
 
-Example ComAgent Stack Event Rates
-========================================================
-
-
-![plot of chunk unnamed-chunk-4](PerformanceMonitoring-figure/unnamed-chunk-4-1.png) 
 
 Dynamic Presentation Generation (future)
 ========================================================
@@ -152,14 +124,14 @@ Example googleVis chart
 ========================================================
 
 <!-- LineChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Wed Jul 22 16:37:48 2015 -->
+<!-- Wed Jul 22 17:10:39 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataLineChartID122db4de476ac () {
+function gvisDataLineChartID128742d3d88d3 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1251,15 +1223,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartLineChartID122db4de476ac() {
-var data = gvisDataLineChartID122db4de476ac();
+function drawChartLineChartID128742d3d88d3() {
+var data = gvisDataLineChartID128742d3d88d3();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.LineChart(
-    document.getElementById('LineChartID122db4de476ac')
+    document.getElementById('LineChartID128742d3d88d3')
     );
     chart.draw(data,options);
     
@@ -1283,9 +1255,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartLineChartID122db4de476ac);
+callbacks.push(drawChartLineChartID128742d3d88d3);
 })();
-function displayChartLineChartID122db4de476ac() {
+function displayChartLineChartID128742d3d88d3() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1309,130 +1281,26 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID122db4de476ac"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID128742d3d88d3"></script>
  
 <!-- divChart -->
   
-<div id="LineChartID122db4de476ac" 
+<div id="LineChartID128742d3d88d3" 
   style="width: 800; height: 500;">
 </div>
 
-
-Example googleVis bar chart
-========================================================
-<!-- BarChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Wed Jul 22 16:37:48 2015 -->
-
-
-<!-- jsHeader -->
-<script type="text/javascript">
- 
-// jsData 
-function gvisDataBarChartID122db14fd9c96 () {
-var data = new google.visualization.DataTable();
-var datajson =
-[
- [
- "ImsiApnAnchor",
-7888134.16 
-],
-[
- "MsisdnAlt",
-7888134.16 
-],
-[
- "MsisdnApnAlt",
-7593975.93 
-],
-[
- "Ipv6AltV2",
-7534017.817 
-] 
-];
-data.addColumn('string','Type');
-data.addColumn('number','Value');
-data.addRows(datajson);
-return(data);
-}
- 
-// jsDrawChart
-function drawChartBarChartID122db14fd9c96() {
-var data = gvisDataBarChartID122db14fd9c96();
-var options = {};
-options["allowHtml"] = true;
-options["height"] =    500;
-options["width"] =    800;
-
-    var chart = new google.visualization.BarChart(
-    document.getElementById('BarChartID122db14fd9c96')
-    );
-    chart.draw(data,options);
-    
-
-}
-  
- 
-// jsDisplayChart
-(function() {
-var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-var chartid = "corechart";
-  
-// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
-var i, newPackage = true;
-for (i = 0; newPackage && i < pkgs.length; i++) {
-if (pkgs[i] === chartid)
-newPackage = false;
-}
-if (newPackage)
-  pkgs.push(chartid);
-  
-// Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartBarChartID122db14fd9c96);
-})();
-function displayChartBarChartID122db14fd9c96() {
-  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-  window.clearTimeout(window.__gvisLoad);
-  // The timeout is set to 100 because otherwise the container div we are
-  // targeting might not be part of the document yet
-  window.__gvisLoad = setTimeout(function() {
-  var pkgCount = pkgs.length;
-  google.load("visualization", "1", { packages:pkgs, callback: function() {
-  if (pkgCount != pkgs.length) {
-  // Race condition where another setTimeout call snuck in after us; if
-  // that call added a package, we must not shift its callback
-  return;
-}
-while (callbacks.length > 0)
-callbacks.shift()();
-} });
-}, 100);
-}
- 
-// jsFooter
-</script>
- 
-<!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID122db14fd9c96"></script>
- 
-<!-- divChart -->
-  
-<div id="BarChartID122db14fd9c96" 
-  style="width: 800; height: 500;">
-</div>
 
 Example googleVis pie chart
 ========================================================
 <!-- PieChart generated in R 3.1.2 by googleVis 0.5.8 package -->
-<!-- Wed Jul 22 16:37:48 2015 -->
+<!-- Wed Jul 22 17:10:39 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataPieChartID122db613a75 () {
+function gvisDataPieChartID128741e430573 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1460,15 +1328,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartPieChartID122db613a75() {
-var data = gvisDataPieChartID122db613a75();
+function drawChartPieChartID128741e430573() {
+var data = gvisDataPieChartID128741e430573();
 var options = {};
 options["allowHtml"] = true;
 options["height"] =    500;
 options["width"] =    800;
 
     var chart = new google.visualization.PieChart(
-    document.getElementById('PieChartID122db613a75')
+    document.getElementById('PieChartID128741e430573')
     );
     chart.draw(data,options);
     
@@ -1492,9 +1360,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartPieChartID122db613a75);
+callbacks.push(drawChartPieChartID128741e430573);
 })();
-function displayChartPieChartID122db613a75() {
+function displayChartPieChartID128741e430573() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1518,11 +1386,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID122db613a75"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID128741e430573"></script>
  
 <!-- divChart -->
   
-<div id="PieChartID122db613a75" 
+<div id="PieChartID128741e430573" 
   style="width: 800; height: 500;">
 </div>
 

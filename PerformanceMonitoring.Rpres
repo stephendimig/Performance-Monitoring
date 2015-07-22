@@ -105,23 +105,6 @@ VE-DSR Performance Monitoring
 ![alt text](system-diagram_2.png)
 
 
-Ganglia Web Server
-========================================================
-The Ganglia Web Server runs the Ganglia Meta Daemon (gmetad) and Ganglia PHP Web Front-end. We run this on an old G6 card in the lab. It has more extensive RPMs installed on it than a client.
-
-- *rrd2csv.py* A script for extracting a csv file from an RRD database.
-- *psbrreptgen.py* A command line script for generating on-demand dynamic reports
-- *PSBR Report Generator* A shiny app for viewing and generating on-demand dynamic reports and presentations (future)
-
-
-Your PC
-========================================================
-You can do analysis on the CSV file for a performance run on your local PC using Excel or R-Studio. I prefer the second option because it easier. You can generate a report for a new run by just changing out the csv file and hitting a single button.
-
-- *psbr.Rmd* the R-markdown file that is a template for a perfomance analysis report.
-- *psbr.Rpres* you can also do interactive presentations of the report data using a charting package like googleVis or rCharts.
-
-
 Active Monitoring with Ganglia
 ========================================================
 
@@ -132,12 +115,6 @@ Ganglia PSBR CPU Example
 ========================================================
 
 ![alt text](ganglia_cpu.png)
-
-
-Ganglia PSBR Session Recs Example
-========================================================
-
-![alt text](ganglia_session_recs.png)
 
 
 Active Monitoring with Ganglia (continued)
@@ -216,22 +193,6 @@ ggplot(mydf, aes(x=factor(Type), y=Value, fill=Type)) + geom_bar(stat = "identit
 ```
 
 
-Example ComAgent Stack Event Rates
-========================================================
-
-
-```{r, echo=FALSE,fig.height=8, fig.width=8}
-ggplot(df, aes(Date)) + 
-    scale_colour_manual("Rate", breaks=c("Ingress", "Egress",  "IngressMean", "EgressMean"), values=c("red", "blue", "orange", "purple")) +
-    geom_line(aes(y = IngressStackEventRate, colour="Ingress")) + 
-    geom_line(aes(y = EgressStackEventRate, colour="Egress")) +
-    geom_hline(aes(yintercept=mean(df$IngressStackEventRate, na.rm=TRUE), colour="IngressMean")) +
-    geom_hline(aes(yintercept=mean(df$EgressStackEventRate, na.rm=TRUE), colour="EgressMean")) +
-    ylab("Rate") +
-    xlab("Date/Time") +
-    ggtitle("PSBR ComAgent Stack Event Rates")
-    
-```
 
 Dynamic Presentation Generation (future)
 ========================================================
@@ -258,21 +219,6 @@ M <- gvisLineChart(df, xvar="Date", yvar="Cpu", options=list(height=500, width=8
 print(M, 'chart')
 ```
 
-
-Example googleVis bar chart
-========================================================
-```{r results='asis', echo=FALSE}
-types <- c("ImsiAnchor", "ImsiApnAnchor", "MsisdnAlt", "MsisdnApnAlt", "Ipv4Alt", "Ipv4AltV2", "Ipv6Alt", "Ipv6AltV2", "Session", "OcSession", "OcClientHost")
-values <- c(mean(df$ImsiAnchorKeyRecs), mean(df$ImsiApnAnchorKeyRecs), mean(df$MsisdnAlternateKeyRecs), mean(df$MsisdnApnAlternateKeyRecs), mean(df$Ipv4AlternateKeyRecs), mean(df$Ipv4AlternateKeyV2Recs), mean(df$Ipv6AlternateKeyRecs), mean(df$Ipv6AlternateKeyV2Recs), mean(df$SessionRecs), mean(df$OcSessionRecs), mean(df$OcClientHostRecs))
-mydf <- data.frame(types, values)
-names(mydf) <- c("Type", "Value")
-
-mydf <- mydf[mydf$Value !=0, ]
-
-M <- gvisBarChart(mydf, xvar="Type", yvar="Value", options=list(height=500, width=800)) 
-
-print(M, 'chart')
-```
 
 Example googleVis pie chart
 ========================================================
